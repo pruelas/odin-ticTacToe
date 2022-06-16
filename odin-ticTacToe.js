@@ -97,13 +97,9 @@ const displayController = (function(){
     }
 
     function checkState(){
-        if(gameBoard.state() === 'won'){
-            //end changes
-            console.log('won');
-            /* endGame(gamBoard.state(), ) */
-        }else if(gameBoard.state() === 'tie'){
-            //tie changes
-            console.log('tie');
+        if(gameBoard.state() === 'won' || gameBoard.state() === 'tie'){
+            endGame(gameBoard.state());
+
         }else{
             if(playerCounter === 1){
                 console.log(player1.getName(), player2.getName());
@@ -118,6 +114,25 @@ const displayController = (function(){
     }
 
     function endGame(result){
+        var resultDisplay = document.getElementById("resultDisplay");
+        resultDisplay.style.display = "flex";
+        var resultText = document.getElementById("resultText");
+        var button = document.getElementById("playAgain");
+        button.style.display = "block";
+        
+        document.getElementsByTagName("h1")[0].style.visibility="hidden";
+        document.getElementById("player").style.visibility="hidden";
+        if(result === "won"){
+            var winningPlayer;
+            if(playerCounter === 1){
+                winningPLayer = player1.getName();
+            }else{
+                winningPLayer = player2.getName();
+            }
+            resultText.textContent = winningPlayer + " Won!"
+        }else{
+            resultText.textContent = "Tied Game!"
+        }
 
     }
 
