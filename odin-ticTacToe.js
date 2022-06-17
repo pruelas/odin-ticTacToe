@@ -32,13 +32,19 @@ const gameBoard = (function(){
         }else{
             gameboard[index] = "O";
         }
-        console.log(index, gameboard[index], gameboard[1], gameboard.length);
         playersMoves += 1;
 
     }
 
+    function resetGameBoard(){
+        playersMoves = 0;
+        for(let i = 0; i< gameboard.length; i++){
+            delete gameboard[i];
+        }
+    }
 
-    return {state, updateGameBoard};
+
+    return {state, updateGameBoard, resetGameBoard}
 })();
 
 const player = (function(name){
@@ -61,10 +67,6 @@ const displayController = (function(){
     var playerCounter = 1;
 
     var startGame = (gameBoard) =>{
-        //hide starting form
-        //all board spots undefined, and display board
-        //Heading: (Player1's Name) Turn
-        //onclick - populate spot, update gameBoard
         document.getElementById('playerInfo').style.display = "none";
         var boardDisplay = document.getElementById("boardDisplay").style.display = "flex";
         document.getElementById("player").innerHTML = `${player1.getName()}'s Turn:`;
@@ -74,25 +76,20 @@ const displayController = (function(){
     }
 
     var updateGame = function(boardSpot) {
-        console.log("here", player1.getName(), player2.getName());
         var boardSpotIndex = boardSpot.getAttribute('data-index');
-        console.log(boardSpot, boardSpotIndex);
         if(boardSpot.textContent !== ""){
             alert("Spot has already been selected! Chose a different one");
         }else if(playerCounter === 1){
-            console.log(playerCounter);
             boardSpot.textContent = "X";
             boardSpot.clasName = "player1Symbol";
             gameBoard.updateGameBoard(boardSpotIndex, playerCounter);
             checkState();
         }else{
-            console.log(playerCounter);
             boardSpot.textContent = "O";
             boardSpot.clasName = "player2Symbol";
             gameBoard.updateGameBoard(boardSpotIndex, playerCounter);
             checkState();
         }
-        console.log("State:" ,gameBoard.state());
         
     }
 
@@ -102,7 +99,6 @@ const displayController = (function(){
 
         }else{
             if(playerCounter === 1){
-                console.log(player1.getName(), player2.getName());
                 document.getElementById("player").innerHTML = player2.getName() + "'s Turn:";
                 playerCounter = 2;
             }else{
@@ -125,9 +121,9 @@ const displayController = (function(){
         if(result === "won"){
             var winningPlayer;
             if(playerCounter === 1){
-                winningPLayer = player1.getName();
+                winningPlayer = player1.getName();
             }else{
-                winningPLayer = player2.getName();
+                winningPlayer = player2.getName();
             }
             resultText.textContent = winningPlayer + " Won!"
         }else{
@@ -136,13 +132,32 @@ const displayController = (function(){
 
     }
 
+    function resetGame(){
+        var boardSpots = document.getElementsByClassName("boardSpot");
+        for(let spot of boardSpots){
+            spot.innerHTML = "";
+        }
+
+        gameBoard.resetGameBoard();
+        playerCounter = 1;
+
+        var resultDisplay = document.getElementById("resultDisplay");
+        resultDisplay.style.display = "none";
+        var resultText = document.getElementById("resultText");
+        var button = document.getElementById("playAgain");
+        button.style.display = "none";
+        
+        document.getElementsByTagName("h1")[0].style.visibility="visible";
+        document.getElementById("player").style.visibility="visible";
+    }
+
     var setPlayers = function(playerName1, playerName2){
         player1 = player(playerName1);
         player2 = player(playerName2);
     }
 
     return {
-        startGame, updateGame, setPlayers
+        startGame, updateGame, setPlayers, resetGame
     };
 
 })(gameBoard);
@@ -151,13 +166,7 @@ const startGameForm = document.getElementById("playerInfo");
 startGameForm.addEventListener('submit', function(e){
     var player1 = startGameForm.elements['player1'].value;
     var player2 = startGameForm.elements['player2'].value;
-    console.log("here3", player1, player2);
     displayController.setPlayers(player1, player2);
     displayController.startGame(gameBoard);
     e.preventDefault();
-    /* e.target.reset(); */
 });
-
-
-
-/* document.addEventListener('onclick', ) */

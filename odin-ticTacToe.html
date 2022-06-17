@@ -25,30 +25,32 @@
 
     <div id="player"> </div>
 
-    <div id="resultDisplay">
-        <div id="resultText">
+        <div id="resultDisplay">
+            <div id="resultText">
 
         </div>
+
         <div id="playAgainBtn">
-            <button id="playAgain">Play Again!</button>
+            <button id="playAgain" onclick="displayController.resetGame()">Play Again!</button>
         </div>
+
     </div>
 
     <div class="boardDisplay" id="boardDisplay">
         <div class="row1">
-            <div class="spot1" data-index = "0" onclick="displayController.updateGame(this)"></div>
-            <div class="spot2" data-index = "1" onclick="displayController.updateGame(this)"></div>
-            <div class="spot3" data-index = "2" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "0" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "1" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "2" onclick="displayController.updateGame(this)"></div>
         </div>
         <div class="row2">
-            <div class="spot4" data-index = "3" onclick="displayController.updateGame(this)"></div>
-            <div class="spot5" data-index = "4" onclick="displayController.updateGame(this)"></div>
-            <div class="spot6" data-index = "5" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "3" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "4" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "5" onclick="displayController.updateGame(this)"></div>
         </div>
         <div class="row3">
-            <div class="spot7" data-index = "6" onclick="displayController.updateGame(this)"></div>
-            <div class="spot8" data-index = "7" onclick="displayController.updateGame(this)"></div>
-            <div class="spot9" data-index = "8" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "6" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "7" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "8" onclick="displayController.updateGame(this)"></div>
         </div>
 
     </div>
