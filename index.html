@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="meyerWeb.css">
+    <link rel="stylesheet" href="odin-ticTacToe.css">
+    <title>odin-ticTacToe</title>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <form action="" id="playerInfo"> 
+
+        <label for="player1">Enter Player 1's Name:</label>
+        <input type="text" id="player1" name="player1" required>
+        
+        <label for="player2">Enter Player 2's Name:</label>
+        <input type="text" id="player2" name="player2" required>
+
+        <button type="submit">Play game!</button>
+
+    </form>
+
+
+    <div id="player"> </div>
+
+        <div id="resultDisplay">
+            <div id="resultText">
+
+        </div>
+
+        <div id="playAgainBtn">
+            <button id="playAgain" onclick="displayController.resetGame()">Play Again!</button>
+        </div>
+
+    </div>
+
+    <div class="boardDisplay" id="boardDisplay">
+        <div class="row1">
+            <div class="boardSpot" data-index = "0" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "1" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "2" onclick="displayController.updateGame(this)"></div>
+        </div>
+        <div class="row2">
+            <div class="boardSpot" data-index = "3" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "4" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "5" onclick="displayController.updateGame(this)"></div>
+        </div>
+        <div class="row3">
+            <div class="boardSpot" data-index = "6" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "7" onclick="displayController.updateGame(this)"></div>
+            <div class="boardSpot" data-index = "8" onclick="displayController.updateGame(this)"></div>
+        </div>
+
+    </div>
+
+
+        
+</body>
+
+<footer>
+    <script src="odin-ticTacToe.js"></script>
+</footer>
+</html>
